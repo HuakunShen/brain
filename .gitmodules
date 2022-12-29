@@ -19,3 +19,12 @@
 [submodule "docs/LearnDocker"]
 	path = docs/LearnDocker
 	url = https://github.com/HuakunShen/LearnDocker.git
+[submodule "docs/LearnAI"]
+	path = docs/LearnAI
+	url = https://github.com/HuakunShen/LearnAI.git
+[submodule "docs/LearnWebScraping"]
+	path = docs/LearnWebScraping
+	url = https://github.com/HuakunShen/LearnWebScraping.git
+[submodule "docs/LearnAlgorithm"]
+	path = docs/LearnAlgorithm
+	url = https://github.com/HuakunShen/LearnAlgorithm.git
