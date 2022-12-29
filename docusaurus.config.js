@@ -3,142 +3,312 @@
 
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const math = require("remark-math");
+const katex = require("rehype-katex");
+const sectionPrefix = require("./src/remark/section-prefix");
+// const mathjax = require("rehype-mathjax");
+// const rehypeMathjax = require("rehype-mathjax");
 
-/** @type {import('@docusaurus/types').Config} */
-const config = {
-  title: "Huakun's World",
-  tagline: "Welcome to My Site",
-  url: "https://your-docusaurus-test-site.com",
-  baseUrl: "/",
-  onBrokenLinks: "warn",
-  onBrokenMarkdownLinks: "warn",
-  favicon: "img/favicon.ico",
+async function createConfig() {
+  // ES Modules are imported with `import()` instead of `require()`, and are imported asynchronously
+  const rehypeMathjax = (await import("rehype-mathjax")).default;
+  return {
+    title: "Huakun's World",
+    tagline: "Welcome to My Site",
+    url: "https://brain.huakunshen.com",
+    baseUrl: "/",
+    onBrokenLinks: "warn",
+    onBrokenMarkdownLinks: "warn",
+    favicon: "img/favicon.ico",
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: "HuakunShen", // Usually your GitHub org/user name.
-  projectName: "Huakun's Brain", // Usually your repo name.
+    // GitHub pages deployment config.
+    // If you aren't using GitHub pages, you don't need these.
+    organizationName: "HuakunShen", // Usually your GitHub org/user name.
+    projectName: "Huakun's Brain", // Usually your repo name.
 
-  // Even if you don't use internalization, you can use this field to set useful
-  // metadata like html lang. For example, if your site is Chinese, you may want
-  // to replace "en" with "zh-Hans".
-  i18n: {
-    defaultLocale: "en",
-    locales: ["en"],
-  },
+    // Even if you don't use internalization, you can use this field to set useful
+    // metadata like html lang. For example, if your site is Chinese, you may want
+    // to replace "en" with "zh-Hans".
+    i18n: {
+      defaultLocale: "en",
+      locales: ["en"],
+    },
+    presets: [
+      [
+        "classic",
+        /** @type {import('@docusaurus/preset-classic').Options} */
+        ({
+          docs: {
+            sidebarPath: require.resolve("./sidebars.js"),
+            // Please change this to your repo.
+            // Remove this to remove the "edit this page" links.
+            // editUrl:
+            //   "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+            remarkPlugins: [require("mdx-mermaid"), math, sectionPrefix],
+            rehypePlugins: [katex],
+          },
+          blog: {
+            showReadingTime: true,
+            // Please change this to your repo.
+            // Remove this to remove the "edit this page" links.
+            // editUrl:
+            //   "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+            remarkPlugins: [require("mdx-mermaid"), math],
+            rehypePlugins: [katex],
+          },
+          theme: {
+            customCss: require.resolve("./src/css/custom.css"),
+          },
+        }),
+      ],
+    ],
 
-  presets: [
-    [
-      "classic",
-      /** @type {import('@docusaurus/preset-classic').Options} */
+    stylesheets: [
+      {
+        href: "https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css",
+        type: "text/css",
+        integrity:
+          "sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM",
+        crossorigin: "anonymous",
+      },
+    ],
+    themeConfig:
+      /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
-        docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl:
-          //   "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+        // announcementBar: {
+        //   id: "pre-alpha-warning",
+        //   content:
+        //     "CrossCopy is still in alpha stage and is planned to be published by January 2023. Documentation is still under development. If you want to use this app, please subscribe to updates.",
+        //   isCloseable: true,
+        // },
+        metadata: [
+          {
+            name: "keywords",
+            content: "Huakun, Notes, Knowledge Base",
+          },
+        ],
+        navbar: {
+          title: "Huakun's Brain",
+          logo: {
+            alt: "My Site Logo",
+            src: "img/logo.svg",
+          },
+          items: [
+            {
+              type: "doc",
+              docId: "intro",
+              position: "left",
+              label: "Notes",
+            },
+            { to: "/blog", label: "Blog", position: "left" },
+            {
+              href: "https://github.com/HuakunShen/brain",
+              label: "GitHub",
+              position: "right",
+            },
+          ],
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl:
-          //   "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+        footer: {
+          style: "dark",
+          links: [
+            {
+              title: "Docs",
+              items: [
+                {
+                  label: "Notes",
+                  to: "/docs/intro",
+                },
+              ],
+            },
+            {
+              title: "Links",
+              items: [
+                {
+                  label: "LinkedIn",
+                  href: "https://www.linkedin.com/in/huakun-shen/",
+                },
+                {
+                  label: "YouTube",
+                  href: "https://www.youtube.com/channel/UC1gJeFbvRcQXDC_C8nKetdA",
+                },
+                {
+                  label: "GitHub",
+                  href: "https://github.com/HuakunShen",
+                },
+                {
+                  label: "Email",
+                  href: "mailto:huakun.shen@huakunshen.com",
+                },
+              ],
+            },
+            {
+              title: "More",
+              items: [
+                {
+                  label: "Blog",
+                  to: "/blog",
+                },
+              ],
+            },
+          ],
+          copyright: `Copyright © ${new Date().getFullYear()} Huakun Shen. Built with Docusaurus.`,
         },
-        theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+        prism: {
+          theme: lightCodeTheme,
+          darkTheme: darkCodeTheme,
         },
       }),
-    ],
-  ],
+  };
+}
 
-  themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      // announcementBar: {
-      //   id: "pre-alpha-warning",
-      //   content:
-      //     "CrossCopy is still in alpha stage and is planned to be published by January 2023. Documentation is still under development. If you want to use this app, please subscribe to updates.",
-      //   isCloseable: true,
-      // },
-      metadata: [
-        {
-          name: "keywords",
-          content: "Huakun, Notes, Knowledge Base",
-        },
-      ],
-      navbar: {
-        title: "Huakun's Brain",
-        logo: {
-          alt: "My Site Logo",
-          src: "img/logo.svg",
-        },
-        items: [
-          {
-            type: "doc",
-            docId: "intro",
-            position: "left",
-            label: "Notes",
-          },
-          { to: "/blog", label: "Blog", position: "left" },
-          {
-            href: "https://github.com/HuakunShen/brain",
-            label: "GitHub",
-            position: "right",
-          },
-        ],
-      },
-      footer: {
-        style: "dark",
-        links: [
-          {
-            title: "Docs",
-            items: [
-              {
-                label: "Notes",
-                to: "/docs/intro",
-              },
-            ],
-          },
-          {
-            title: "Links",
-            items: [
-              {
-                label: "LinkedIn",
-                href: "https://www.linkedin.com/in/huakun-shen/",
-              },
-              {
-                label: "YouTube",
-                href: "https://www.youtube.com/channel/UC1gJeFbvRcQXDC_C8nKetdA",
-              },
-              {
-                label: "GitHub",
-                href: "https://github.com/HuakunShen",
-              },
-              {
-                label: "Email",
-                href: "mailto:huakun.shen@huakunshen.com",
-              },
-            ],
-          },
-          {
-            title: "More",
-            items: [
-              {
-                label: "Blog",
-                to: "/blog",
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} Huakun Shen. Built with Docusaurus.`,
-      },
-      prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-      },
-    }),
-};
+/** @type {import('@docusaurus/types').Config} */
+// const config = {
+//   title: "Huakun's World",
+//   tagline: "Welcome to My Site",
+//   url: "https://brain.huakunshen.com",
+//   baseUrl: "/",
+//   onBrokenLinks: "warn",
+//   onBrokenMarkdownLinks: "warn",
+//   favicon: "img/favicon.ico",
 
-module.exports = config;
+//   // GitHub pages deployment config.
+//   // If you aren't using GitHub pages, you don't need these.
+//   organizationName: "HuakunShen", // Usually your GitHub org/user name.
+//   projectName: "Huakun's Brain", // Usually your repo name.
+
+//   // Even if you don't use internalization, you can use this field to set useful
+//   // metadata like html lang. For example, if your site is Chinese, you may want
+//   // to replace "en" with "zh-Hans".
+//   i18n: {
+//     defaultLocale: "en",
+//     locales: ["en"],
+//   },
+//   presets: [
+//     [
+//       "classic",
+//       /** @type {import('@docusaurus/preset-classic').Options} */
+//       ({
+//         docs: {
+//           sidebarPath: require.resolve("./sidebars.js"),
+//           // Please change this to your repo.
+//           // Remove this to remove the "edit this page" links.
+//           // editUrl:
+//           //   "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+//           remarkPlugins: [require("mdx-mermaid"), math, sectionPrefix],
+//           rehypePlugins: [katex],
+//         },
+//         blog: {
+//           showReadingTime: true,
+//           // Please change this to your repo.
+//           // Remove this to remove the "edit this page" links.
+//           // editUrl:
+//           //   "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+//           remarkPlugins: [require("mdx-mermaid"), math],
+//           rehypePlugins: [katex],
+//         },
+//         theme: {
+//           customCss: require.resolve("./src/css/custom.css"),
+//         },
+//       }),
+//     ],
+//   ],
+
+//   stylesheets: [
+//     {
+//       href: "https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css",
+//       type: "text/css",
+//       integrity:
+//         "sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM",
+//       crossorigin: "anonymous",
+//     },
+//   ],
+//   themeConfig:
+//     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+//     ({
+//       // announcementBar: {
+//       //   id: "pre-alpha-warning",
+//       //   content:
+//       //     "CrossCopy is still in alpha stage and is planned to be published by January 2023. Documentation is still under development. If you want to use this app, please subscribe to updates.",
+//       //   isCloseable: true,
+//       // },
+//       metadata: [
+//         {
+//           name: "keywords",
+//           content: "Huakun, Notes, Knowledge Base",
+//         },
+//       ],
+//       navbar: {
+//         title: "Huakun's Brain",
+//         logo: {
+//           alt: "My Site Logo",
+//           src: "img/logo.svg",
+//         },
+//         items: [
+//           {
+//             type: "doc",
+//             docId: "intro",
+//             position: "left",
+//             label: "Notes",
+//           },
+//           { to: "/blog", label: "Blog", position: "left" },
+//           {
+//             href: "https://github.com/HuakunShen/brain",
+//             label: "GitHub",
+//             position: "right",
+//           },
+//         ],
+//       },
+//       footer: {
+//         style: "dark",
+//         links: [
+//           {
+//             title: "Docs",
+//             items: [
+//               {
+//                 label: "Notes",
+//                 to: "/docs/intro",
+//               },
+//             ],
+//           },
+//           {
+//             title: "Links",
+//             items: [
+//               {
+//                 label: "LinkedIn",
+//                 href: "https://www.linkedin.com/in/huakun-shen/",
+//               },
+//               {
+//                 label: "YouTube",
+//                 href: "https://www.youtube.com/channel/UC1gJeFbvRcQXDC_C8nKetdA",
+//               },
+//               {
+//                 label: "GitHub",
+//                 href: "https://github.com/HuakunShen",
+//               },
+//               {
+//                 label: "Email",
+//                 href: "mailto:huakun.shen@huakunshen.com",
+//               },
+//             ],
+//           },
+//           {
+//             title: "More",
+//             items: [
+//               {
+//                 label: "Blog",
+//                 to: "/blog",
+//               },
+//             ],
+//           },
+//         ],
+//         copyright: `Copyright © ${new Date().getFullYear()} Huakun Shen. Built with Docusaurus.`,
+//       },
+//       prism: {
+//         theme: lightCodeTheme,
+//         darkTheme: darkCodeTheme,
+//       },
+//     }),
+// };
+
+// module.exports = config;
+module.exports = createConfig;
