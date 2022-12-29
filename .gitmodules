@@ -1,3 +1,6 @@
 [submodule "docs/LearnTools"]
 	path = docs/LearnTools
 	url = https://github.com/HuakunShen/LearnTools.git
+[submodule "docs/LearnWeb"]
+	path = docs/LearnWeb
+	url = https://github.com/HuakunShen/LearnWeb.git
