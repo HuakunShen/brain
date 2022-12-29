@@ -4,3 +4,18 @@
 [submodule "docs/LearnWeb"]
 	path = docs/LearnWeb
 	url = https://github.com/HuakunShen/LearnWeb.git
+[submodule "docs/LearnDesignPattern"]
+	path = docs/LearnDesignPattern
+	url = https://github.com/HuakunShen/LearnDesignPattern.git
+[submodule "docs/LearnPenetrationTesting"]
+	path = docs/LearnPenetrationTesting
+	url = https://github.com/HuakunShen/LearnPenetrationTesting.git
+[submodule "docs/LearnReverseEngineering"]
+	path = docs/LearnReverseEngineering
+	url = https://github.com/HuakunShen/LearnReverseEngineering.git
+[submodule "docs/LearnRobotics"]
+	path = docs/LearnRobotics
+	url = https://github.com/HuakunShen/LearnRobotics.git
+[submodule "docs/LearnDocker"]
+	path = docs/LearnDocker
+	url = https://github.com/HuakunShen/LearnDocker.git
