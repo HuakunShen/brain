@@ -1,0 +1,30 @@
+[submodule "docs/LearnTools"]
+	path = docs/LearnTools
+	url = https://github.com/HuakunShen/LearnTools.git
+[submodule "docs/LearnWeb"]
+	path = docs/LearnWeb
+	url = https://github.com/HuakunShen/LearnWeb.git
+[submodule "docs/LearnDesignPattern"]
+	path = docs/LearnDesignPattern
+	url = https://github.com/HuakunShen/LearnDesignPattern.git
+[submodule "docs/LearnPenetrationTesting"]
+	path = docs/LearnPenetrationTesting
+	url = https://github.com/HuakunShen/LearnPenetrationTesting.git
+[submodule "docs/LearnReverseEngineering"]
+	path = docs/LearnReverseEngineering
+	url = https://github.com/HuakunShen/LearnReverseEngineering.git
+[submodule "docs/LearnRobotics"]
+	path = docs/LearnRobotics
+	url = https://github.com/HuakunShen/LearnRobotics.git
+[submodule "docs/LearnDocker"]
+	path = docs/LearnDocker
+	url = https://github.com/HuakunShen/LearnDocker.git
+[submodule "docs/LearnAI"]
+	path = docs/LearnAI
+	url = https://github.com/HuakunShen/LearnAI.git
+[submodule "docs/LearnWebScraping"]
+	path = docs/LearnWebScraping
+	url = https://github.com/HuakunShen/LearnWebScraping.git
+[submodule "docs/LearnAlgorithm"]
+	path = docs/LearnAlgorithm
+	url = https://github.com/HuakunShen/LearnAlgorithm.git
