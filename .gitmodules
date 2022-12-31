@@ -28,3 +28,9 @@
 [submodule "docs/LearnAlgorithm"]
 	path = docs/LearnAlgorithm
 	url = https://github.com/HuakunShen/LearnAlgorithm.git
+[submodule "docs/LearnSystemDesign"]
+	path = docs/LearnSystemDesign
+	url = https://github.com/HuakunShen/LearnSystemDesign.git
+[submodule "docs/LearnHacking"]
+	path = docs/LearnHacking
+	url = https://github.com/HuakunShen/LearnHacking

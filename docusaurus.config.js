@@ -13,6 +13,10 @@ async function createConfig() {
   // ES Modules are imported with `import()` instead of `require()`, and are imported asynchronously
   const rehypeMathjax = (await import("rehype-mathjax")).default;
   return {
+    markdown: {
+      mermaid: true,
+    },
+    themes: ["@docusaurus/theme-mermaid"],
     title: "Huakun's World",
     tagline: "Welcome to My Site",
     url: "https://brain.huakunshen.com",
@@ -44,7 +48,7 @@ async function createConfig() {
             // Remove this to remove the "edit this page" links.
             // editUrl:
             //   "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
-            remarkPlugins: [require("mdx-mermaid"), math, sectionPrefix],
+            remarkPlugins: [math, sectionPrefix],
             rehypePlugins: [katex],
           },
           blog: {
@@ -53,7 +57,7 @@ async function createConfig() {
             // Remove this to remove the "edit this page" links.
             // editUrl:
             //   "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
-            remarkPlugins: [require("mdx-mermaid"), math],
+            remarkPlugins: [math],
             rehypePlugins: [katex],
           },
           theme: {
@@ -75,6 +79,9 @@ async function createConfig() {
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
+        mermaid: {
+          theme: { light: "neutral", dark: "dark" },
+        },
         // announcementBar: {
         //   id: "pre-alpha-warning",
         //   content:
