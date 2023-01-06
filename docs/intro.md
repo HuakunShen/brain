@@ -6,6 +6,12 @@ sidebar_position: 1
 
 It's a knowledge base with all kinds of stuff I am learning.
 
+:::caution
+The website is being migrated. Most notes are done. Some pages only has a placeholder skeleton and will be filled in later.
+:::
+
+Use the search bar to search by keywords.
+
 Topics include
 
 - AI/ML
@@ -20,3 +26,6 @@ Topics include
 - Robotics
 - Tools
 - OS
+
+
+[Search By Tags](/docs/tags)

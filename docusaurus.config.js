@@ -16,7 +16,22 @@ async function createConfig() {
     markdown: {
       mermaid: true,
     },
-    themes: ["@docusaurus/theme-mermaid"],
+    themes: [
+      "@docusaurus/theme-mermaid",
+      [
+        require.resolve("@easyops-cn/docusaurus-search-local"),
+        /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+        ({
+          // ... Your options.
+          // `hashed` is recommended as long-term-cache of index file is possible.
+          hashed: true,
+          // For Docs using Chinese, The `language` is recommended to set to:
+          // ```
+          // language: ["en", "zh"],
+          // ```
+        }),
+      ],
+    ],
     title: "Huakun's World",
     tagline: "Welcome to My Site",
     url: "https://brain.huakunshen.com",
@@ -66,7 +81,28 @@ async function createConfig() {
         }),
       ],
     ],
-
+    plugins: [
+      [
+        '@docusaurus/plugin-content-docs',
+        {
+          id: 'projects', // omitted => default instance
+          path: 'projects',
+          routeBasePath: 'projects',
+          sidebarPath: require.resolve('./sidebars.js'),
+          // ... other options
+        },
+      ],
+      [
+        '@docusaurus/plugin-content-docs',
+        {
+          id: 'videos', // omitted => default instance
+          path: 'videos',
+          routeBasePath: 'videos',
+          sidebarPath: require.resolve('./sidebars.js'),
+          // ... other options
+        },
+      ],
+    ],
     stylesheets: [
       {
         href: "https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css",
@@ -79,6 +115,19 @@ async function createConfig() {
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
+        // announcementBar: {
+        //   id: 'migration',
+        //   content:
+        //     'This is my new website, migration is not fully completed. Some content may be missing. See <a target="_blank" rel="noopener noreferrer" href="https://huakunshen.com">My Old Website</a> for more info.',
+        //   backgroundColor: '#fafbfc',
+        //   textColor: '#091E42',
+        //   isCloseable: true,
+        // },
+        colorMode: {
+          defaultMode: 'dark',
+          disableSwitch: true,
+          respectPrefersColorScheme: false,
+        },
         mermaid: {
           theme: { light: "neutral", dark: "dark" },
         },
@@ -106,6 +155,20 @@ async function createConfig() {
               docId: "intro",
               position: "left",
               label: "Notes",
+            },
+            {
+              docsPluginId: 'projects',
+              type: "doc",
+              docId: "projects",
+              position: "left",
+              label: "Projects",
+            },
+            {
+              docsPluginId: 'videos',
+              type: "doc",
+              docId: "videos",
+              position: "left",
+              label: "Videos",
             },
             { to: "/blog", label: "Blog", position: "left" },
             {

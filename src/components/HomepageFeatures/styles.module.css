@@ -9,3 +9,10 @@
   height: 200px;
   width: 200px;
 }
+
+.youtubeLogo {
+  width: 200px;
+  height: 200px;
+  translate: 10%;
+  transform: translateY(20%);
+}
