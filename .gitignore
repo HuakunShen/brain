@@ -21,4 +21,4 @@ yarn-error.log*
 
 # docs
 # Local Netlify folder
-.netlify
+# .netlify

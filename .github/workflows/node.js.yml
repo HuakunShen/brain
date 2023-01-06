@@ -20,6 +20,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.LearnReposToken }}
+        submodules: true
     - name: Use Node.js
       uses: actions/setup-node@v3
       with:
