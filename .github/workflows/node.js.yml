@@ -28,7 +28,8 @@ jobs:
       with:
         node-version: 18.x
         cache: 'npm'
-    - shell: bash
+    - name: Build and Deploy
+      shell: bash
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
       run: |
