@@ -34,3 +34,6 @@
 [submodule "docs/LearnHacking"]
 	path = docs/LearnHacking
 	url = https://github.com/HuakunShen/LearnHacking
+[submodule "docs/LearnLanguage"]
+	path = docs/LearnLanguage
+	url = https://github.com/HuakunShen/LearnLanguage.git
