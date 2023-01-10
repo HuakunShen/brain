@@ -38,7 +38,7 @@ async function createConfig() {
     baseUrl: "/",
     onBrokenLinks: "warn",
     onBrokenMarkdownLinks: "warn",
-    favicon: "img/favicon.ico",
+    favicon: "img/anonymous-face.jpg",
 
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
@@ -147,7 +147,8 @@ async function createConfig() {
           title: "Huakun's Brain",
           logo: {
             alt: "My Site Logo",
-            src: "img/logo.svg",
+            src: "img/anonymous-face.jpg",
+            style: {borderRadius: '50%'},
           },
           items: [
             {
