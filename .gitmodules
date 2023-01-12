@@ -37,3 +37,9 @@
 [submodule "docs/LearnLanguage"]
 	path = docs/LearnLanguage
 	url = https://github.com/HuakunShen/LearnLanguage.git
+[submodule "docs/LearnBlockchain"]
+	path = docs/LearnBlockchain
+	url = https://github.com/HuakunShen/LearnBlockchain.git
+[submodule "docs/LearnOS"]
+	path = docs/LearnOS
+	url = https://github.com/HuakunShen/LearnOS.git

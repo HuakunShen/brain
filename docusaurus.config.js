@@ -34,7 +34,7 @@ async function createConfig() {
     ],
     title: "Huakun's World",
     tagline: "Welcome to My Site",
-    url: "https://brain.huakunshen.com",
+    url: "https://huakunshen.com",
     baseUrl: "/",
     onBrokenLinks: "warn",
     onBrokenMarkdownLinks: "warn",
