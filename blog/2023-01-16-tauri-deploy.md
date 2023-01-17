@@ -16,7 +16,7 @@ tags: [Tauri, Rust, Web, TypeScript, CICD, GitHub Action, Deployment]
 
 ## Building
 
-For [updater](https://tauri.app/zh-cn/v1/guides/distribution/updater/) to work, a public key is required. 
+For [updater](https://tauri.app/zh-cn/v1/guides/distribution/updater/) to work, a public key is required.
 
 ```json title="tauri.config.json"
 "updater": {
@@ -33,7 +33,7 @@ A pair of keys can be generated with `tauri signer generate -w ~/.tauri/ezup.key
 
 If update is configured, then private key and password environment variables must be set.
 
-The following script can automatically load the private key as environment variable. Assuming password is an empty string. 
+The following script can automatically load the private key as environment variable. Assuming password is an empty string.
 
 ```bash
 #!/usr/bin/env bash
@@ -55,7 +55,8 @@ env:
   TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
   TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
 ```
-I encountered a error during compilation on Ubuntu platform. 
+
+I encountered a error during compilation on Ubuntu platform.
 
 Error: `thread '<unnamed>' panicked at 'Can't detect any appindicator library', src/build.rs:326:17`
 
@@ -65,5 +66,16 @@ Install `libayatana-appindicator3-1-dev` with apt for ubuntu.
 
 ## Updater Server
 
-[vercel/hazel](https://github.com/vercel/hazel) is a updater server for electron, also compatible with tauri, can be deployed in a few clicks on vercel.
+[vercel/hazel](https://github.com/vercel/hazel) is a updater server for electron, can be deployed in a few clicks on vercel.
 
+[lemarier/tauri-update-server](https://github.com/lemarier/tauri-update-server) forks [vercel/hazel](https://github.com/vercel/hazel).
+
+I forked [lemarier/tauri-update-server](https://github.com/lemarier/tauri-update-server) to be [HuakunShen/tauri-update-server](https://github.com/HuakunShen/tauri-update-server).
+
+The reason I made a fork is that, new upates were made in [vercel/hazel](https://github.com/vercel/hazel), and I merged the new commits to [lemarier/tauri-update-server](https://github.com/lemarier/tauri-update-server).
+
+With one click, an update server can be deployed on Vercel.
+
+See [EzUp](https://github.com/HuakunShen/ezup/) and [HuakunShen/tauri-ezup-updater](https://github.com/HuakunShen/tauri-ezup-updater) for and example.
+
+The former is the actual Tauri app. The later is the corresponding update server.
