@@ -36,8 +36,8 @@ function Header() {
           position: "absolute",
           top: "50%",
           left: "50%",
-          fontSize: '3em',
-          translate: '-50%'
+          fontSize: "3em",
+          translate: "-50%",
         }}
       >
         Welcome To Huakun's World
