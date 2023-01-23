@@ -18,19 +18,19 @@ async function createConfig() {
     },
     themes: [
       "@docusaurus/theme-mermaid",
-      // [
-      //   require.resolve("@easyops-cn/docusaurus-search-local"),
-      //   /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
-      //   ({
-      //     // ... Your options.
-      //     // `hashed` is recommended as long-term-cache of index file is possible.
-      //     hashed: true,
-      //     // For Docs using Chinese, The `language` is recommended to set to:
-      //     // ```
-      //     // language: ["en", "zh"],
-      //     // ```
-      //   }),
-      // ],
+      [
+        require.resolve("@easyops-cn/docusaurus-search-local"),
+        /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+        ({
+          // ... Your options.
+          // `hashed` is recommended as long-term-cache of index file is possible.
+          hashed: true,
+          // For Docs using Chinese, The `language` is recommended to set to:
+          // ```
+          // language: ["en", "zh"],
+          // ```
+        }),
+      ],
     ],
     title: "Huakun's World",
     tagline: "Welcome to My Site",
@@ -115,29 +115,6 @@ async function createConfig() {
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
-        algolia: {
-          // The application ID provided by Algolia
-          appId: 'BCXHBQCAW3',
-    
-          // Public API key: it is safe to commit it
-          apiKey: 'c6060582d19e25400658473d4f15b7fc',
-    
-          indexName: 'crosscopy',
-    
-          // Optional: see doc section below
-          contextualSearch: true,
-    
-          // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
-          // externalUrlRegex: 'external\\.com|domain\\.com',
-    
-          // Optional: Algolia search parameters
-          searchParameters: {},
-    
-          // Optional: path for search page that enabled by default (`false` to disable it)
-          searchPagePath: 'search',
-    
-          //... other Algolia params
-        },
         // announcementBar: {
         //   id: 'migration',
         //   content:
