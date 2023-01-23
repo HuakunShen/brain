@@ -43,3 +43,6 @@
 [submodule "docs/LearnOS"]
 	path = docs/LearnOS
 	url = https://github.com/HuakunShen/LearnOS.git
+[submodule "docs/LearnCrypto"]
+	path = docs/LearnCrypto
+	url = git@github.com:HuakunShen/LearnCrypto.git
