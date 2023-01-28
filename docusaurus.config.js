@@ -57,6 +57,9 @@ async function createConfig() {
         "classic",
         /** @type {import('@docusaurus/preset-classic').Options} */
         ({
+          googleAnalytics: {
+            trackingID: "G-CMJZGFWKZ1"
+          },
           docs: {
             sidebarPath: require.resolve("./sidebars.js"),
             // Please change this to your repo.
