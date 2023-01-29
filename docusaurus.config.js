@@ -34,7 +34,7 @@ async function createConfig() {
     ],
     title: "Huakun's World",
     tagline: "Welcome to My Site",
-    url: "https://huakunshen.com",
+    url: "https://huakun.tech",
     baseUrl: "/",
     onBrokenLinks: "warn",
     onBrokenMarkdownLinks: "warn",
@@ -58,7 +58,7 @@ async function createConfig() {
         /** @type {import('@docusaurus/preset-classic').Options} */
         ({
           googleAnalytics: {
-            trackingID: "G-CMJZGFWKZ1"
+            trackingID: "G-9EFF9NK198"
           },
           docs: {
             sidebarPath: require.resolve("./sidebars.js"),
