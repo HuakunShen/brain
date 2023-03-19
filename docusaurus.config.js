@@ -65,6 +65,7 @@ async function createConfig() {
           },
           docs: {
             sidebarPath: require.resolve("./sidebars.js"),
+            exclude: ['**/LearnAlgorithm/LeetCode/Crawler/**'],
             // Please change this to your repo.
             // Remove this to remove the "edit this page" links.
             // editUrl:
