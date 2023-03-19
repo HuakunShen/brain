@@ -46,3 +46,6 @@
 [submodule "docs/LearnCrypto"]
 	path = docs/LearnCrypto
 	url = git@github.com:HuakunShen/LearnCrypto.git
+[submodule "docs/LearnDatabase"]
+	path = docs/LearnDatabase
+	url = https://github.com/HuakunShen/LearnDatabase.git
