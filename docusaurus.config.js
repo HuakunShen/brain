@@ -234,7 +234,7 @@ async function createConfig() {
         prism: {
           theme: lightCodeTheme,
           darkTheme: darkCodeTheme,
-          additionalLanguages: ['java', 'powershell', 'rust'],
+          additionalLanguages: ['java', 'powershell', 'rust', 'yaml'],
         },
       }),
   };
