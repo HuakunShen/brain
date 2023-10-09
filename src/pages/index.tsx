@@ -34,7 +34,7 @@ function Header() {
         style={{
           margin: 0,
           position: "absolute",
-          top: "50%",
+          top: "30%",
           left: "50%",
           fontSize: "3em",
           translate: "-50%",
@@ -42,6 +42,13 @@ function Header() {
       >
         Welcome To Huakun's World
       </h1>
+      <iframe
+        v-show="iframeLoaded"
+        src="https://git-skyline.huakun.tech/contribution/github/huakunshen/embed?enableZoom=false&autoRotate=false"
+        width="100%"
+        height="100%"
+        frameborder="0"
+      ></iframe>
     </div>
   );
 }
