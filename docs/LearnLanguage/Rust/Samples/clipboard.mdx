@@ -1,0 +1,41 @@
+---
+title: Clipboard IO (Text + Image)
+---
+
+## Image Read using Rust + arboard
+
+https://crates.io/crates/arboard
+
+FYI, this package is cross platform.
+
+The following Example read image from clipboard and write to a file (`rust-clipboard-img.png`)
+
+```rust
+// cargo add image
+// cargo add arboard
+
+use std::convert::TryInto;
+use arboard::*;
+use image::*;
+
+fn main() {
+    let mut clipboard = Clipboard::new().unwrap();
+    let image = match clipboard.get_image() {
+        Ok(img) => img,
+        Err(e) => {
+            eprintln!("error getting image: {}", e);
+            return;
+        }
+    };
+    eprintln!("getting {}x{} image", image.width, image.height);
+
+    let image: RgbaImage = ImageBuffer::from_raw(
+        image.width.try_into().unwrap(),
+        image.height.try_into().unwrap(),
+        image.bytes.into_owned(),
+    )
+    .unwrap();
+    let image = DynamicImage::ImageRgba8(image);
+    image.save("rust-clipboard-img.png").unwrap();
+}
+```

@@ -1,0 +1,6 @@
+[ACID - Wikipedia](https://en.wikipedia.org/wiki/ACID) means ([atomicity](https://en.wikipedia.org/wiki/Atomicity_(database_systems) "Atomicity (database systems)"), [consistency](https://en.wikipedia.org/wiki/Consistency_(database_systems) "Consistency (database systems)"), [isolation](https://en.wikipedia.org/wiki/Isolation_(database_systems) "Isolation (database systems)"), [durability](https://en.wikipedia.org/wiki/Durability_(database_systems) "Durability (database systems)"))
+It's a set of database properties for guarantee data validity despite errors, power failures, and other mishaps. Relational databases usually have ACID, while some non-SQL databases decides to use BASE model to achieve high availability and scalability by lossen the ACID requirements.
+
+## References
+- [Data Consistency Models: ACID vs. BASE Databases Explained (neo4j.com)](https://neo4j.com/blog/acid-vs-base-consistency-models-explained/)
+- [ACID vs. BASE: Comparison of Database Transaction Models (phoenixnap.com)](https://phoenixnap.com/kb/acid-vs-base)

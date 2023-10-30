@@ -1,0 +1,84 @@
+---
+title: Deployment
+---
+
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+> Deployment Methods
+
+There are so many ways of deployment that I cannot cover all of them.
+
+## With a VM
+
+Here are a few videos I made to explain how to deploy web app on AWS EC2 (VM). Load Balancer service is used for SSL certificate.
+
+This method is not recommended, but it gives you an idea of the old way and how things work.
+
+Load Balancer is expensive and redundant for a small project.
+
+- [Deploy Nodejs Web app on AWS EC2 with SSL certificate](https://youtu.be/dMVy3BQB314)
+- [AWS EC2, serve website and force redirect http to https](https://youtu.be/8Q_rjpS4Ths)
+- [Deploy React App To A Regular Server (AWS EC2)](https://youtu.be/OCau7X--EXU)
+
+## BaaS / PaaS
+
+Read more about BaaS (Backend as a Service) / PaaS (Platform as a Service) [here](../LearnWeb/Concept/service-model).
+
+Basically you leave everything to some cloud. All you need to do it to upload the content.
+
+SSL certificate is taken care of, so not much to worry about.
+
+Usually, you can choose to use CLI to manually deploy, or use CICD to deploy automatically when triggered (usually a push or release).
+
+- [Netlify](https://www.netlify.com/)
+- [Vercel](https://vercel.com/)
+- [Heroku](https://www.heroku.com/)
+- [Firebase Hosting](https://firebase.google.com/docs/hosting)
+- [GCP App Engine](https://cloud.google.com/appengine) and [doc](https://cloud.google.com/appengine/docs/standard/an-overview-of-app-engine)
+  - [My Notes](./Cloud/GCP/AppEngine.md)
+  - You pretty much just need to run `gcloud app deploy` to deploy an app that can run fine locally
+- [GCP Cloud Run](https://cloud.google.com/run) and [doc](https://cloud.google.com/run/docs/quickstarts/deploy-container)
+  - Can be easily deployed with `gcloud run deploy`
+  - Successor of App Engine
+  - Not only supports standard language deployments, but also Docker deployment
+
+## Reverse Proxy
+
+![Cloudflare Illustration](https://www.cloudflare.com/img/learning/cdn/glossary/reverse-proxy/reverse-proxy-flow.svg)
+
+### Nginx (Reverse Proxy) + Certbot (SSL)
+
+Read [Reverse Proxy](../LearnSystemDesign/Concepts/Proxy) for what it is.
+
+We can use Nginx as reverse proxy to direct traffic from client to backend;
+but the main purpose of using Nginx as a reverse proxy here is to have a easy way of setting up SSL certificate, to support HTTPS.
+
+Certbot has nginx plugin for easy SSL deployment with letsencrypt.
+
+### Nginx + letsencrypt
+
+<BrowserWindow url="https://youtu.be/oykl1Ih9pMg">
+  <iframe
+    width="100%"
+    height="500"
+    src="https://www.youtube.com/embed/oykl1Ih9pMg"
+    title="Full Node.js Deployment - NGINX, SSL With Lets Encrypt"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+</BrowserWindow>
+
+### Docker + Nginx + letsencrypt
+
+<BrowserWindow url="https://youtu.be/zJPlyjfV4C0">
+  <iframe
+    width="100%"
+    height="500"
+    src="https://www.youtube.com/embed/zJPlyjfV4C0"
+    title="Deploy Web App with Docker, Nginx and SSL (HTTPS)"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+</BrowserWindow>
