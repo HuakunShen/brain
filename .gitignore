@@ -25,3 +25,5 @@ yarn-error.log*
 
 .obsidian
 .idea/
+# Local Netlify folder
+.netlify
