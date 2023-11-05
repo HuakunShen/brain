@@ -1,6 +1,6 @@
 ---
 title: CrossCopy Migration to Bun and Nestjs
-authors: Huakun Shen
+authors: huakun
 tags: [bun, nestjs, migration]
 ---
 
