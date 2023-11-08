@@ -30,3 +30,30 @@ nmap -sP 192.168.1.0/24
 ```bash
 nmap 192.168.1.0/24
 ```
+
+## Tips
+
+- ttl can be used to identify the OS of the target, linux ttl is 64, windows ttl is 128
+- When scanning "filtered" port (not sure open or close) with TCP SYN packet, we can get info from duration
+  - Shorter duration like 0.05 sec could mean firewall rejects the packet
+- To get hostname, the -sV is helpful. It scans for service versions and takes longer.
+
+## UDP Scan
+
+- UDP protocol doesn't have handshake, requires a longer timeout, scanning it requires more time
+- UDP service may to respond to the scan
+
+
+## Saving Results
+
+- Normal output: `-oN`, `.nmap`
+- Grepable output: `-oG`, `.gnmap`
+- XML output: `-oX`, `.xml`
+- All formats: `-oA`, `.nmap`, `.gnmap`, `.xml`
+
+
+
+
+## References
+
+- https://nmap.org/book/man-port-scanning-techniques.html

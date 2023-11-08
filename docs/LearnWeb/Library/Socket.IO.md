@@ -50,3 +50,19 @@ Java, C++ and Swift clients are also officially supported to accomodate Android,
   - It's an essential concept to understand
 - [Concept of Namespaces](https://socket.io/docs/v3/namespaces/)
   - > A Namespace is a communication channel that allows you to split the logic of your application over a single shared connection
+
+
+## Admin UI
+
+Socket.IO provides an admin UI for monitoring and debugging purposes. 
+
+Docs: https://socket.io/blog/admin-ui-first-release/
+
+Go to this website to get connected. https://admin.socket.io
+
+### Note on CORS
+
+Setting CORS to "*" may not work. you may have to set `origin: ["https://admin.socket.io"]`.
+
+
+
