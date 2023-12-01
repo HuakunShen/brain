@@ -29,6 +29,10 @@ def get_letters(c):
 
 
 class Solution:
+    """
+    Runtime: 24 ms, faster than 95.02% of Python3 online submissions for Letter Combinations of a Phone Number.
+    Memory Usage: 14.3 MB, less than 64.14% of Python3 online submissions for Letter Combinations of a Phone Number.
+    """
     def letterCombinations(self, digits: str) -> List[str]:
         if len(digits) == 0:
             return []
@@ -53,6 +57,10 @@ Memory Usage: 14.2 MB, less than 86.17% of Python3 online submissions for Letter
 from typing import List
 
 class Solution:
+    """
+    Runtime: 28 ms, faster than 81.61% of Python3 online submissions for Letter Combinations of a Phone Number.
+    Memory Usage: 14.2 MB, less than 86.17% of Python3 online submissions for Letter Combinations of a Phone Number.
+    """
     def letterCombinations(self, digits: str) -> List[str]:
         if len(digits) == 0:
             return []

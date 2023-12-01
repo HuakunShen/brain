@@ -74,3 +74,47 @@ class Solution2:
                     max_area = max(max_area, area_sum)
         return max_area
 ```
+
+```python
+class Solution3:
+    """
+    Implement with queue (actually list), without recursion
+    list was used to replace queue improve runtime by a little bit
+    Runtime: 808 ms, faster than 5.03% of Python3 online submissions for Max Area of Island.
+    Memory Usage: 14.7 MB, less than 82.14% of Python3 online submissions for Max Area of Island.
+    """
+
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        """
+        >>> sol = Solution3()
+        >>> grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]
+        >>> sol.maxAreaOfIsland(grid)
+        6
+        >>> grid = [[0, 0, 0, 0, 0, 0, 0, 0]]
+        >>> sol.maxAreaOfIsland(grid)
+        0
+        """
+        nrow, ncol = len(grid), len(grid[0])
+        seen = set()
+        max_area = 0
+        for row in range(nrow):
+            for col in range(ncol):
+                if grid[row][col] == 1 and (row, col) not in seen:
+                    area_sum = 0
+                    q = [(row, col)]
+                    while len(q):
+                        row_, col_ = q.pop()
+                        if 0 <= row_ < nrow and 0 <= col_ < ncol and grid[row_][col_] == 1 and (row_, col_) not in seen:
+                            seen.add((row_, col_))
+                            area_sum += 1
+                            q.extend([(row_ - 1, col_), (row_ + 1, col_), (row_, col_ + 1), (row_, col_ - 1)])
+                    max_area = max(max_area, area_sum)
+        return max_area
+
+
+if __name__ == '__main__':
+    import doctest
+
+    doctest.testmod()
+
+```

@@ -14,6 +14,23 @@ class SolutionRecursion:
     """
 
     def isMatch(self, s: str, p: str) -> bool:
+        """
+        >>> sol = SolutionRecursion()
+        >>> print(sol.isMatch("aa", "a"))
+        False
+        >>> print(sol.isMatch("aa", "a*"))
+        True
+        >>> print(sol.isMatch("ab", ".*"))
+        True
+        >>> print(sol.isMatch("aab", "c*a*b"))
+        True
+        >>> print(sol.isMatch("mississippi", "mis*is*p*."))
+        False
+        >>> print(sol.isMatch("aaa", "a*a"))
+        True
+        >>> print(sol.isMatch("bbbba", ".*a*a"))
+        True
+        """
         # if no pattern, no string. No string -> a* still works
         if len(p) == 0:
             return len(s) == 0

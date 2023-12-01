@@ -71,3 +71,86 @@ class Solution2:
                 set_.add(num)
         return False
 ```
+
+## More Languages
+
+### C++
+
+```cpp
+#include <vector>
+#include <set>
+#include <iostream>
+using namespace std;
+
+class Solution {
+public:
+    /**
+     * Runtime: 116 ms, faster than 19.03% of C++ online submissions for Contains Duplicate.
+     * Memory Usage: 21 MB, less than 20.08% of C++ online submissions for Contains Duplicate.
+     * @param nums
+     * @return
+     */
+    bool containsDuplicate(vector<int>& nums) {
+        set<int> s;
+        for (int num: nums) {
+            if (s.find(num) != s.end())
+                return true;
+            else
+                s.insert(num);
+        }
+        return false;
+    }
+};
+
+int main() {
+    Solution sol;
+    vector<int> nums{0};
+    cout << sol.containsDuplicate(nums) << endl;
+}
+```
+
+### Java
+
+```java
+/**
+ * Runtime: 6 ms, faster than 66.08% of Java online submissions for Contains Duplicate.
+ * Memory Usage: 45.6 MB, less than 61.42% of Java online submissions for Contains Duplicate.
+ * Using set or hash map to record what number has been seen, if the same number appears again, can be detected in O(1) time
+ * Time Complexity: O(n)
+ */
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        Set<Integer> set = new HashSet<Integer>();
+        for(int num : nums) {
+            if (set.contains(num))
+                return true;
+            else
+                set.add(num);
+        }
+        return false;
+    }
+}
+```
+
+### JavaScript 
+
+```javascript
+/**
+ * Runtime: 80 ms, faster than 88.31% of JavaScript online submissions for Contains Duplicate.
+ * Memory Usage: 42.8 MB, less than 59.51% of JavaScript online submissions for Contains Duplicate.
+ *
+ * Using set or hash map to record what number has been seen, if the same number appears again, can be detected in O(1) time
+ * Time Complexity: O(n)
+ *
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var containsDuplicate = function(nums) {
+    const set = new Set();
+    for (let i = 0; i < nums.length; i++) {
+        if (set.has(nums[i])) return true
+        else set.add(nums[i])
+    }
+    return false
+};
+```

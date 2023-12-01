@@ -4,24 +4,59 @@
 
 ## Solution 0: Pure Recursion (Brute Force)
 
-- [Python Solution](./solution0.py)
+### Python Implementation
 
-  ```python
-  class Solution0:
-      def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
-          sum_all = len(s1) + len(s2) + len(s3)
-          if sum_all == 0:
-              return True
-          elif len(s3) == 0 and sum_all != 0:
-              return False
-          else:
-              first_match, second_match = len(s1) and s1[0] == s3[0], len(s2) and s2[0] == s3[0]
-              first_success = self.isInterleave(s1[1:], s2[0:], s3[1:]) if first_match else False
-              second_success = self.isInterleave(s1[0:], s2[1:], s3[1:]) if second_match else False
-              return first_success or second_success
-  ```
+```python
+class Solution0:
+    def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
+        sum_all = len(s1) + len(s2) + len(s3)
+        if sum_all == 0:
+            return True
+        elif len(s3) == 0 and sum_all != 0:
+            return False
+        else:
+            first_match, second_match = len(s1) and s1[0] == s3[0], len(s2) and s2[0] == s3[0]
+            first_success = self.isInterleave(s1[1:], s2[0:], s3[1:]) if first_match else False
+            second_success = self.isInterleave(s1[0:], s2[1:], s3[1:]) if second_match else False
+            return first_success or second_success
+```
 
-- [CPP Solution](./solution0.cpp)
+### C++ Implementation
+
+```cpp
+#include <iostream>
+#include <cassert>
+using namespace std;
+
+class Solution0 {
+public:
+    bool isInterleave(string s1, string s2, string s3) {
+        unsigned long sum_all = s1.length() + s2.length() + s3.length();
+        if (sum_all == 0) {
+            return true;
+        } else if (sum_all != 0 && s3.length() == 0) {
+            return false;
+        } else {
+            bool first_match = s1.length() && s1[0] == s3[0];
+            bool second_match = s2.length() && s2[0] == s3[0];
+            bool first_success = first_match ? this->isInterleave(s1.substr(1), s2, s3.substr(1)) : false;
+            bool second_success = second_match ? this->isInterleave(s1, s2.substr(1), s3.substr(1)) : false;
+            return first_success || second_success;
+        }
+    }
+};
+
+int main() {
+    Solution0 sol;
+    bool res = sol.isInterleave("aabcc", "dbbca", "aadbbbaccc");
+    assert(res == 0);
+    res = sol.isInterleave("abbbbbbcabbacaacccababaabcccabcacbcaabbbacccaaaaaababbbacbb", "ccaacabbacaccacababbbbabbcacccacccccaabaababacbbacabbbbabc", "cacbabbacbbbabcbaacbbaccacaacaacccabababbbababcccbabcabbaccabcccacccaabbcbcaccccaaaaabaaaaababbbbacbbabacbbacabbbbabc");
+    assert(res == 1);
+    res = sol.isInterleave("aabcc", "dbbca", "aadbbcbcac");
+    assert(res == 1);
+    return 0;
+}
+```
 
 Solution Timeout
 
@@ -32,7 +67,6 @@ Solution Timeout
 
 ## Solution 1: Recursion with Memoization
 
-[Python Solution](./solution1.py)
 
 **Time Complexity:** O(m x n)
   - each cell of the memoization table will be calculated at most once, if a value is present then return it takes constant time
@@ -64,8 +98,6 @@ class Solution1:
 
 ## Solution 2: 2D Dynamic Programming
 
-[Golang Solution](./solution2.go)
-
 **Time Complexity:** O(m x n)
   - each cell of the memoization table will be calculated exactly once
 
@@ -75,6 +107,7 @@ class Solution1:
 Runtime: 4 ms, faster than 50.00% of Go online submissions for Interleaving String.
 
 Memory Usage: 2.3 MB, less than 18.29% of Go online submissions for Interleaving String.
+
 
 ```go
 func isInterleave(s1 string, s2 string, s3 string) bool {
@@ -102,6 +135,40 @@ func isInterleave(s1 string, s2 string, s3 string) bool {
     return dp[l1][l2]
 }
 ```
+
+### Java Implementation
+
+```java
+class Solution {
+    public boolean isInterleave(String s1, String s2, String s3) {
+        int s1_len = s1.length(), s2_len = s2.length(), s3_len = s3.length();
+        if (s3_len != s1_len + s2_len) {
+            return false;
+        }
+        boolean dp[][] = new boolean[s1_len + 1][s2_len + 1];
+        for (int i = 0; i <= s1_len; i++) {
+            for (int j = 0; j <= s2_len; j++) {
+                if (i == 0 && j == 0) {
+                    dp[i][j] = true;
+                } else if (i == 0) {
+                    // start with s2
+                    dp[i][j] = dp[i][j - 1] && s2.charAt(j - 1) == s3.charAt(i + j - 1);
+                } else if (j == 0) {
+                    // start with s1
+                    dp[i][j] = dp[i - 1][j] && s1.charAt(i - 1) == s3.charAt(i + j - 1);
+                } else {
+                    // if true above and  s1 matches s3 i.e. s2 letter in this column is already used, check row letter
+                    // or
+                    // if true left and s2 matches s3 i.e. s1 letter in this row is already used, check column letter
+                    dp[i][j] = (dp[i - 1][j] && s1.charAt(i - 1) == s3.charAt(i + j - 1)) || (dp[i][j - 1] && s2.charAt(j - 1) == s3.charAt(i + j - 1));
+                }
+            }
+        }
+        return dp[s1_len][s2_len];
+    }
+}
+```
+
 
 ## Solution 3: 1D Dynamic Programming
 
