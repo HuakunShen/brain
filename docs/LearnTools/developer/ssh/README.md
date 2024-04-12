@@ -165,6 +165,12 @@ echo '<the public key>' >> authorized_keys # append your public key to a file
 `authorized_keys` is the key point. You can have multiple public key in this file (each on a new line). Each key represents a computer that can access the target.
 
 :::caution
+If the remote server is a Windows machine and the remote user is an administrator, `.ssh/authorized_keys` may not work. Instead, use `C:\ProgramData\ssh\administrators_authorized_keys`.
+
+See https://superuser.com/questions/1342411/setting-ssh-keys-on-windows-10-openssh-server
+:::
+
+:::caution
 Use `>>` to append to the file. Don't use `>` which could accidentally overwrite an existing `authorized_keys` file.
 
 It's also fine to edit the file using editors like `vim` or `nano`.
