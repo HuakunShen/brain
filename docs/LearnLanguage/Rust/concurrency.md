@@ -12,7 +12,7 @@
   - [Example 3: Loop](#example-3-loop)
     - [Provide `stop` method in System (tokio)](#provide-stop-method-in-system-tokio)
     - [The Thread Way to Stop (with a flag)](#the-thread-way-to-stop-with-a-flag)
-
+  - [Example 4: Clipboard Watcher](#example-4-clipboard-watcher)
 
 ## Example 1: Multi-Threading Counter
 
@@ -420,4 +420,6 @@ async fn main() {
 // refresh stopped
 ```
 
+## Example 4: Clipboard Watcher
 
+This will be a larger example, go to [clipboard-watcher.md](./Samples/clipboard-watcher.md);
