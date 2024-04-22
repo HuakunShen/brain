@@ -850,36 +850,37 @@ There could be multiple solutions to this problem:
 2.  Use the `WatcherShutdown` design from Level 2.
     <details>
     <summary>Add these patch to fix the problem.</summary>
-        ```rust
-        impl<T: ClipboardHandler + Sync + Send + 'static> Watcher<T> {
-            fn get_shutdown(&self) -> WatcherShutdown {
-                WatcherShutdown {
-                    running: Arc::clone(&self.running),
-                }
+    
+    ```rust
+    impl<T: ClipboardHandler + Sync + Send + 'static> Watcher<T> {
+        fn get_shutdown(&self) -> WatcherShutdown {
+            WatcherShutdown {
+                running: Arc::clone(&self.running),
             }
         }
+    }
 
-        pub struct WatcherShutdown {
-            running: Arc<AtomicBool>,
+    pub struct WatcherShutdown {
+        running: Arc<AtomicBool>,
+    }
+
+    impl WatcherShutdown {
+        pub fn stop(self) {
+            self.running.store(false, std::sync::atomic::Ordering::Relaxed);
         }
+    }
 
-        impl WatcherShutdown {
-            pub fn stop(self) {
-                self.running.store(false, std::sync::atomic::Ordering::Relaxed);
-            }
-        }
+    fn main() {
+        let mut watcher = Watcher::new();
+        let shutdown = watcher.add_handler(ClipboardHandlerImpl::new()).get_shutdown();
+        thread::spawn(move || {
+            watcher.start_block();
+        });
+        thread::sleep(Duration::from_secs(5));
+        shutdown.stop();
+    }
 
-        fn main() {
-            let mut watcher = Watcher::new();
-            let shutdown = watcher.add_handler(ClipboardHandlerImpl::new()).get_shutdown();
-            thread::spawn(move || {
-                watcher.start_block();
-            });
-            thread::sleep(Duration::from_secs(5));
-            shutdown.stop();
-        }
-
-        ```
+    ```
 
     </details>
 
