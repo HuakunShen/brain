@@ -423,3 +423,17 @@ async fn main() {
 ## Example 4: Clipboard Watcher
 
 This will be a larger example, go to [clipboard-watcher.md](./Samples/clipboard-watcher.md);
+
+I discuss how to implement a clipboard watcher (or any other event listener) in Rust.
+
+The following topics are covered
+
+1. Creating callback functions
+2. Using trait to define handlers
+3. Using trait to handle multi-platform implementation of the watcher
+4. Using Arc + Mutex to share data between threads
+5. Rust generics
+6. How to stop a watcher thread using
+   1. Channel
+   2. Flag (`AtomicBool`)
+   3. `abort()` of tokio's `JoinHandle`
