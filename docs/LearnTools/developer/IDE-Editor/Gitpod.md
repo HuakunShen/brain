@@ -5,7 +5,7 @@ title: Gitpod
 ## Usage
 
 - Prefix GitHub repo URL with `gitpod.io/#`
-		- Sample: [gitpod.io/#https://github.com/HuakunShen/wol-web](gitpod.io/#https://github.com/HuakunShen/wol-web)
+		- Sample: [https://gitpod.io/#https://github.com/HuakunShen/wol-web](https://gitpod.io/#https://github.com/HuakunShen/wol-web)
 - There is a free option, see [Plans and Pricing](https://www.gitpod.io/pricing)
 - Support [**Self-Hosted**](https://www.gitpod.io/docs/self-hosted/latest)
 - Full access to terminal

@@ -10,8 +10,8 @@
 -  Construct max heap with a min heap function
 	- Push the opposite number (-1 * x) to the heap
 	- times the popped value by -1
-	- [1046. Last Stone Weight](../LeetCode/Problems/1046.Last-Stone-Weight/README.md)
+	- [1046. Last Stone Weight](../LeetCode/Problems/1046.Last-Stone-Weight.md)
 - When size of a **min heap** is `k`, the next popped value is The k-th **largest** in the heap.
 	- This could be a trick to save time.
-	- [703. Kth Largest Element in a Stream](../LeetCode/Problems/703.Kth-Largest-Element-in-a-Stream/README.md)
+	- [703. Kth Largest Element in a Stream](../LeetCode/Problems/703.Kth-Largest-Element-in-a-Stream.md)
 

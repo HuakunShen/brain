@@ -20,7 +20,7 @@ def solution(head: ListNode):
 	return sentinel.next
 ```
 
-See [203.Remove-Linked-List-Elements](../LeetCode/Problems/203.Remove-Linked-List-Elements/README.md) for an example.
+See [203.Remove-Linked-List-Elements](../LeetCode/Problems/203.Remove-Linked-List-Elements.md) for an example.
 
 # Reference
 

@@ -6,7 +6,7 @@ title: GitHub Actions
 
 Use [google-github-actions/auth: A GitHub Action for authenticating to Google Cloud.](https://github.com/google-github-actions/auth) to authenticate. 
 
-You can use a [Workload Identity Pools](./Workload-Identity-Pools.md) or a service account json to authenticate.
+You can use a [Workload Identity Pools](./GCP/Workload-Identity-Pools.md) or a service account json to authenticate.
 
 ## Cloud Storage
 
