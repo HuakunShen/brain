@@ -1,6 +1,6 @@
-# Clipboard Watcher Design (Rust Conccurency)
+# Clipboard Watcher Design (Rust Concurrency)
 
-- [Clipboard Watcher Design (Rust Conccurency)](#clipboard-watcher-design-rust-conccurency)
+- [Clipboard Watcher Design (Rust Concurrency)](#clipboard-watcher-design-rust-concurrency)
   - [Level 0](#level-0)
   - [Level 1](#level-1)
     - [thread + channel](#thread--channel)
