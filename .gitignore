@@ -18,12 +18,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# docs
-# Local Netlify folder
-# .netlify
-
-.obsidian
-.idea/
-# Local Netlify folder
-.netlify
