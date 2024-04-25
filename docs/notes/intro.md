@@ -6,10 +6,6 @@ sidebar_position: 1
 
 It's a knowledge base with all kinds of stuff I am learning.
 
-:::caution
-The website is being migrated. Most notes are done. Some pages only has a placeholder skeleton and will be filled in later.
-:::
-
 Use the search bar to search by keywords.
 
 Topics include
@@ -28,6 +24,6 @@ Topics include
 - OS
 
 
-[Search By Tags](/docs/tags)
+[Search By Tags](/notes/tags)
 
 <iframe src="https://github.com/sponsors/HuakunShen/card" title="Sponsor HuakunShen" height="225" width="600"></iframe>
