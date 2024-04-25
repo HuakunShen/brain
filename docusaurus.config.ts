@@ -91,16 +91,16 @@ const config: Config = {
     ],
   ],
   plugins: [
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "projects", // omitted => default instance
-        path: "projects",
-        routeBasePath: "projects",
-        sidebarPath: require.resolve("./sidebars.ts"),
-        // ... other options
-      },
-    ],
+    // [
+    //   "@docusaurus/plugin-content-docs",
+    //   {
+    //     id: "projects", // omitted => default instance
+    //     path: "projects",
+    //     routeBasePath: "projects",
+    //     sidebarPath: require.resolve("./sidebars.ts"),
+    //     // ... other options
+    //   },
+    // ],
     [
       "@docusaurus/plugin-content-docs",
       {
@@ -139,7 +139,7 @@ const config: Config = {
           label: "Notes",
         },
         { to: "/blog", label: "Blog", position: "left" },
-        { to: "/projects", label: "Projects", position: "left" },
+        // { to: "/projects", label: "Projects", position: "left" },
         { to: "/videos", label: "Videos", position: "left" },
         {
           href: "https://github.com/HuakunShen/",
