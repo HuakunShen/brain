@@ -68,6 +68,9 @@ const config: Config = {
           trackingID: "G-9EFF9NK198"
         },
         docs: {
+          // id: "notes",
+          path: "docs/notes",
+          routeBasePath: "notes",
           sidebarPath: "./sidebars.ts",
           exclude: ["**/LearnAlgorithm/LeetCode/Crawler/**"],
           // Please change this to your repo.
@@ -156,7 +159,7 @@ const config: Config = {
           items: [
             {
               label: "Notes",
-              to: "/docs/intro",
+              to: "/notes/intro",
             },
           ],
         },
