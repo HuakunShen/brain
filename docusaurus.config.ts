@@ -108,7 +108,7 @@ const config: Config = {
       "@docusaurus/plugin-content-docs",
       {
         id: "videos", // omitted => default instance
-        path: "videos",
+        path: "docs/videos",
         routeBasePath: "videos",
         sidebarPath: require.resolve("./sidebars.ts"),
         // ... other options
