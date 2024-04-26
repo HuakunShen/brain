@@ -97,9 +97,9 @@ const config: Config = {
     [
       "@docusaurus/plugin-content-docs",
       {
-        id: "myprojects", // omitted => default instance
-        path: "docs/myprojects",
-        routeBasePath: "myprojects",
+        id: "projects", // omitted => default instance
+        path: "docs/projects",
+        routeBasePath: "projects",
         sidebarPath: require.resolve("./sidebars.ts"),
         // ... other options
       },
@@ -142,7 +142,7 @@ const config: Config = {
           label: "Notes",
         },
         { to: "/blog", label: "Blog", position: "left" },
-        { to: "/myprojects", label: "My Projects", position: "left" },
+        { to: "/projects", label: "Projects", position: "left" },
         { to: "/videos", label: "Videos", position: "left" },
         {
           href: "https://github.com/HuakunShen/",
