@@ -14,6 +14,6 @@ Some more specific topics listed separately
 
 Most of my projects are related to web development. 
 
-See [My Projects](/projects) for more information. 
+<!-- See [My Projects](/projects) for more information.  -->
 
 Also see [My Videos](/videos) and [YouTube Channel](https://www.youtube.com/channel/UC1gJeFbvRcQXDC_C8nKetdA) for the videos (tutorials) I made.

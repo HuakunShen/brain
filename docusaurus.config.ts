@@ -68,6 +68,9 @@ const config: Config = {
           trackingID: "G-9EFF9NK198"
         },
         docs: {
+          // id: "notes",
+          path: "docs/notes",
+          routeBasePath: "notes",
           sidebarPath: "./sidebars.ts",
           exclude: ["**/LearnAlgorithm/LeetCode/Crawler/**"],
           // Please change this to your repo.
@@ -95,7 +98,7 @@ const config: Config = {
       "@docusaurus/plugin-content-docs",
       {
         id: "projects", // omitted => default instance
-        path: "projects",
+        path: "docs/projects",
         routeBasePath: "projects",
         sidebarPath: require.resolve("./sidebars.ts"),
         // ... other options
@@ -105,7 +108,7 @@ const config: Config = {
       "@docusaurus/plugin-content-docs",
       {
         id: "videos", // omitted => default instance
-        path: "videos",
+        path: "docs/videos",
         routeBasePath: "videos",
         sidebarPath: require.resolve("./sidebars.ts"),
         // ... other options
@@ -156,7 +159,7 @@ const config: Config = {
           items: [
             {
               label: "Notes",
-              to: "/docs/intro",
+              to: "/notes/intro",
             },
           ],
         },
