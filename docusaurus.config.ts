@@ -86,6 +86,8 @@ const config: Config = {
           editUrl: "https://github.com/HuakunShen/brain/edit/main/",
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
+          blogSidebarTitle: "All Posts",
+          blogSidebarCount: "ALL",
         },
         theme: {
           customCss: "./src/css/custom.css",
