@@ -2,6 +2,8 @@
 title: Wormhole
 ---
 
+[Source Code Analysis of Magic Wormhole](../../../../blog/2024-04-28-magic-wormhole-code-analysis.md)
+
 - https://magic-wormhole.readthedocs.io/en/latest/welcome.html
 - https://github.com/magic-wormhole/magic-wormhole
 
