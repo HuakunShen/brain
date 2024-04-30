@@ -104,6 +104,6 @@ All events are caught by `on_any` and sent to `evt_tx`. Then I can handle all ev
 
 Not sure about the performance difference. It shouldn't matter as this is dealing with network I/O. The performance bottleneck is the network, not the CPU. So I think this is a good solution.
 
-Cloning variables, locking and unlocking mutexes, and moving variables all cost time, and are harder to read.
+Cloning variables, locking and unlocking mutexes, and moving variables from stack to heap all cost time, and are harder to read. Unsure about the cost of using channels, but I think it's a good trade-off.
 
 I am thinking about a new design for `rust_socketio`. The `ClientBuilder` can simply return a channel to the user, and the user can handle all events in the loop with select outside the closures. This way the user can handle events in a more natural way.
