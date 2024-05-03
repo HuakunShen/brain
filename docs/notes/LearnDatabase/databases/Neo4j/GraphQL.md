@@ -87,8 +87,8 @@ specify a callback function that gets executed during GraphQL query parsing, to 
 
 ```gql
 type Product {
-    name: String!
-    slug: String! @populatedBy(callback: "slug", operations: [CREATE, UPDATE])
+  name: String!
+  slug: String! @populatedBy(callback: "slug", operations: [CREATE, UPDATE])
 }
 ```
 
@@ -96,20 +96,20 @@ Pass callback function from client side.
 
 ```js
 const slugCallback = async (root) => {
-    return `${root.name}_slug`
-}
+  return `${root.name}_slug`;
+};
 
 new Neo4jGraphQL({
-    typeDefs,
-    driver,
-    features: {
-        populatedBy: {
-            callbacks: {
-                slug: slugCallback
-            }
-        }
-    }
-})
+  typeDefs,
+  driver,
+  features: {
+    populatedBy: {
+      callbacks: {
+        slug: slugCallback,
+      },
+    },
+  },
+});
 ```
 
 ##### Example (modifiedBy)
@@ -125,20 +125,20 @@ type Record {
 
 ```js
 const modifiedByCallback = async (_parent, _args, context) => {
-    return context.username;
-}
+  return context.username;
+};
 
 new Neo4jGraphQL({
-    typeDefs,
-    driver,
-    features: {
-        populatedBy: {
-            callbacks: {
-                modifiedBy: modifiedByCallback
-            }
-        }
-    }
-})
+  typeDefs,
+  driver,
+  features: {
+    populatedBy: {
+      callbacks: {
+        modifiedBy: modifiedByCallback,
+      },
+    },
+  },
+});
 ```
 
 ### `@cypher`
@@ -174,9 +174,9 @@ This value is represented by the following TypeScript interface definition:
 
 ```ts
 interface Auth {
-    isAuthenticated: boolean;
-    roles?: string[];
-    jwt: any;
+  isAuthenticated: boolean;
+  roles?: string[];
+  jwt: any;
 }
 ```
 
@@ -184,45 +184,50 @@ You can use the JWT in the request to return the value of the currently logged i
 
 ```gql
 type User {
-    id: String
+  id: String
 }
 
 type Query {
-    me: User @cypher(
-        statement: """
-        MATCH (user:User {id: $jwt.sub})
-        RETURN user
-        """,
-        columnName: "user"
+  me: User
+    @cypher(
+      statement: """
+      MATCH (user:User {id: $jwt.sub})
+      RETURN user
+      """
+      columnName: "user"
     )
 }
 ```
 
 #### `cypherParams`
 
-Inject values into cypher query from GraphQL context function. 
+Inject values into cypher query from GraphQL context function.
 
 Can be used to parse JWT token and inject user id into context.
 
 ```js
 const server = new ApolloServer({
-    typeDefs,
+  typeDefs,
 });
 
 await startStandaloneServer(server, {
-    context: async ({ req }) => {
-        const userId = parseJwt(req.headers.authorization);
-        return { cypherParams: { userId: userId } }
-    },
+  context: async ({ req }) => {
+    const userId = parseJwt(req.headers.authorization);
+    return { cypherParams: { userId: userId } };
+  },
 });
 ```
 
 ```gql
 type Query {
-    userPosts: [Post] @cypher(statement: """
-        MATCH (:User {id: $userId})-[:POSTED]->(p:Post)
-        RETURN p
-    """, columnName: "p")
+  userPosts: [Post]
+    @cypher(
+      statement: """
+      MATCH (:User {id: $userId})-[:POSTED]->(p:Post)
+      RETURN p
+      """
+      columnName: "p"
+    )
 }
 ```
 
@@ -232,8 +237,8 @@ maps a GraphQL field to a Neo4j property on a node or relationship
 
 ```gql
 type User {
-    id: ID! @id @alias(property: "dbId")
-    username: String!
+  id: ID! @id @alias(property: "dbId")
+  username: String!
 }
 ```
 
@@ -245,11 +250,11 @@ https://neo4j.com/docs/graphql/current/type-definitions/directives/indexes-and-c
 
 ```gql
 type Colour {
-    hexadecimal: String! @unique
+  hexadecimal: String! @unique
 }
 
 type Colour {
-    hexadecimal: String! @unique(constraintName: "unique_colour")
+  hexadecimal: String! @unique(constraintName: "unique_colour")
 }
 ```
 
@@ -258,9 +263,10 @@ type Colour {
 Use `@fulltext` directive to add a Full text index.
 
 ```gql
-type Product @fulltext(indexes: [{ indexName: "ProductName", fields: ["name"] }]) {
-    name: String!
-    color: Color! @relationship(type: "OF_COLOR", direction: OUT)
+type Product
+  @fulltext(indexes: [{ indexName: "ProductName", fields: ["name"] }]) {
+  name: String!
+  color: Color! @relationship(type: "OF_COLOR", direction: OUT)
 }
 ```
 
@@ -274,30 +280,42 @@ This will generate a new query
 
 ```gql
 type Query {
-    productsFulltextProductName(phrase: String!, where: ProductFulltextWhere, sort: [ProductFulltextSort!],
-    limit: Int, offset: Int): [ProductFulltextResult!]!
+  productsFulltextProductName(
+    phrase: String!
+    where: ProductFulltextWhere
+    sort: [ProductFulltextSort!]
+    limit: Int
+    offset: Int
+  ): [ProductFulltextResult!]!
 }
 
-
-"""The result of a fulltext search on an index of Product"""
+"""
+The result of a fulltext search on an index of Product
+"""
 type ProductFulltextResult {
   score: Float
   product: Product
 }
 
-"""The input for filtering a fulltext query on an index of Product"""
+"""
+The input for filtering a fulltext query on an index of Product
+"""
 input ProductFulltextWhere {
   score: FloatWhere
   product: ProductWhere
 }
 
-"""The input for sorting a fulltext query on an index of Product"""
+"""
+The input for sorting a fulltext query on an index of Product
+"""
 input ProductFulltextSort {
   score: SortDirection
   product: ProductSort
 }
 
-"""The input for filtering the score of a fulltext search"""
+"""
+The input for filtering the score of a fulltext search
+"""
 input FloatWhere {
   min: Float
   max: Float
@@ -308,7 +326,11 @@ input FloatWhere {
 
 ```gql
 query {
-  productsFulltextProductName(phrase: "Hot sauce", where: { score: { min: 1.1 } } sort: [{ product: { name: ASC } }]) {
+  productsFulltextProductName(
+    phrase: "Hot sauce"
+    where: { score: { min: 1.1 } }
+    sort: [{ product: { name: ASC } }]
+  ) {
     score
     product {
       name
@@ -327,15 +349,17 @@ https://neo4j.com/docs/graphql/current/schema-configuration/type-configuration/
 
 This directive is used to limit the availability of query operations in the library.
 
-
 ```gql
-directive @query(read: Boolean! = true, aggregate: Boolean! = false) on OBJECT | SCHEMA
+directive @query(
+  read: Boolean! = true
+  aggregate: Boolean! = false
+) on OBJECT | SCHEMA
 ```
 
 ```gql
 type Movie @query(read: false, aggregate: true) {
-    title: String
-    length: Int
+  title: String
+  length: Int
 }
 ```
 
@@ -345,40 +369,49 @@ type Movie @query(read: false, aggregate: true) {
 
 ```gql
 enum MutationFields {
-    CREATE
-    UPDATE
-    DELETE
+  CREATE
+  UPDATE
+  DELETE
 }
 
-directive @mutation(operations: [MutationFields!]! = [CREATE, UPDATE, DELETE]) on OBJECT | SCHEMA
-
+directive @mutation(
+  operations: [MutationFields!]! = [CREATE, UPDATE, DELETE]
+) on OBJECT | SCHEMA
 
 # Enable only CREATE mutation
 type Movie @mutation(operations: [CREATE]) {
-    title: String
-    length: Int
+  title: String
+  length: Int
 }
 ```
 
 ##### `@subscription`
 
-> 
+>
 
 ```gql
 enum SubscriptionFields {
+  CREATE
+  UPDATE
+  DELETE
+  CREATE_RELATIONSHIP
+  DELETE_RELATIONSHIP
+}
+
+directive @subscription(
+  operations: [SubscriptionFields!]! = [
     CREATE
     UPDATE
     DELETE
     CREATE_RELATIONSHIP
     DELETE_RELATIONSHIP
-}
-
-directive @subscription(operations: [SubscriptionFields!]! = [CREATE, UPDATE, DELETE, CREATE_RELATIONSHIP, DELETE_RELATIONSHIP]) on OBJECT | SCHEMA
+  ]
+) on OBJECT | SCHEMA
 
 # Enable only movieCreated subscription for Movie
 type Movie @subscription(operations: [CREATE]) {
-    title: String
-    length: Int
+  title: String
+  length: Int
 }
 ```
 
@@ -419,7 +452,7 @@ https://neo4j.com/docs/graphql/current/queries-aggregations/aggregations/
 
 ```gql
 query {
-  users(where: {age: { _lt: 50 }}) {
+  users(where: { age: { _lt: 50 } }) {
     id
     name
     age
@@ -430,16 +463,15 @@ query {
 These features can be disabled or enabled
 
 ```js
-
 const features = {
-    filters: {
-        String: {
-            LT: true,
-            GT: true,
-            LTE: true,
-            GTE: true
-        }
-    }
+  filters: {
+    String: {
+      LT: true,
+      GT: true,
+      LTE: true,
+      GTE: true,
+    },
+  },
 };
 
 const neoSchema = new Neo4jGraphQL({ features, typeDefs, driver });
@@ -453,16 +485,10 @@ https://neo4j.com/docs/graphql/current/queries-aggregations/sorting/
 
 ```gql
 query {
-    movies(options: {
-        sort: [
-            {
-                runtime: ASC
-            }
-        ]
-    }) {
-        title
-        runtime
-    }
+  movies(options: { sort: [{ runtime: ASC }] }) {
+    title
+    runtime
+  }
 }
 ```
 
@@ -472,12 +498,9 @@ https://neo4j.com/docs/graphql/current/queries-aggregations/pagination/
 
 ```gql
 query {
-    users(options: {
-        offset: 10
-        limit: 10
-    }) {
-        name
-    }
+  users(options: { offset: 10, limit: 10 }) {
+    name
+  }
 }
 ```
 
@@ -488,10 +511,11 @@ https://neo4j.com/docs/graphql/current/authentication-and-authorization/
 `@authentication` and `@authorization` directive can be used.
 
 ```gql
-type User @authentication(operations: [DELETE], jwt: { roles_INCLUDES: "admin" }) {
-    id: ID!
-    name: String!
-    password: String!
+type User
+  @authentication(operations: [DELETE], jwt: { roles_INCLUDES: "admin" }) {
+  id: ID!
+  name: String!
+  password: String!
 }
 ```
 
@@ -499,17 +523,59 @@ type User @authentication(operations: [DELETE], jwt: { roles_INCLUDES: "admin" }
 
 ```gql
 type User {
-    id: ID!
+  id: ID!
 }
 
-type Post @authorization(filter: [
-    { where: { node: { author: { id: "$jwt.sub" } } } }
-    { requireAuthentication: false, operations: [READ], where: { node: { public: true } } }
-]) {
-    title: String!
-    content: String!
-    public: Boolean!
-    author: User! @relationship(type: "AUTHORED", direction: IN)
+type Post
+  @authorization(
+    filter: [
+      { where: { node: { author: { id: "$jwt.sub" } } } }
+      {
+        requireAuthentication: false
+        operations: [READ]
+        where: { node: { public: true } }
+      }
+    ]
+  ) {
+  title: String!
+  content: String!
+  public: Boolean!
+  author: User! @relationship(type: "AUTHORED", direction: IN)
 }
 ```
 
+## Excluded Directives OSM
+
+https://neo4j.com/docs/graphql/current/ogm/directives/#_excluded_directives
+
+The following directives are excluded from the OGM. Reason: OGM is not designed to be exposed API which needs security measures.
+
+- `@authentication`
+- `@authorization`
+- `@subscriptionsAuthorization`
+- `@query`
+- `@mutation`
+- `@subscription`
+- `@filterable`
+- `@selectable`
+- `@settable`
+
+
+This doesn't mean you can't use GraphQL for exposed API. OMG is designed for internal use.
+
+This is how ogm work. Like Prisma. It's always used programmatically on server so there is no need for Auth.
+
+```ts
+const ogm = new OGM({ typeDefs, driver });
+const User = ogm.model("User");
+ const users = await User.find({
+    where: { name_REGEX: regex },
+    options: {
+        offset,
+        limit,
+        sort
+    }
+});
+```
+
+https://neo4j.com/docs/graphql/current/ogm/installation/
