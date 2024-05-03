@@ -59,7 +59,7 @@ https://neo4j.com/docs/graphql/current/type-definitions/directives/autogeneratio
 
 Autogeneration of IDs for the field.
 
-```gql
+```graphql
 type User {
   id: ID! @id
   username: String!
@@ -68,7 +68,7 @@ type User {
 
 #### `@timestamp`
 
-```gql
+```graphql
 type User {
   createdAt: DateTime! @timestamp(operations: [CREATE])
   updatedAt: DateTime! @timestamp(operations: [UPDATE])
@@ -85,7 +85,7 @@ specify a callback function that gets executed during GraphQL query parsing, to 
 
 ##### Example (slug)
 
-```gql
+```graphql
 type Product {
   name: String!
   slug: String! @populatedBy(callback: "slug", operations: [CREATE, UPDATE])
@@ -116,7 +116,7 @@ new Neo4jGraphQL({
 
 Context values can be used in callback function.
 
-```gql
+```graphql
 type Record {
     content: String!
     modifiedBy: @populatedBy(callback: "modifiedBy", operations: [CREATE, UPDATE])
@@ -149,7 +149,7 @@ https://neo4j.com/docs/graphql/current/type-definitions/directives/cypher/
 
 This value is a reference to the currently resolved node, and it can be used to traverse the graph.
 
-```gql
+```graphql
 query {
   Movie {
     title
@@ -182,7 +182,7 @@ interface Auth {
 
 You can use the JWT in the request to return the value of the currently logged in User:
 
-```gql
+```graphql
 type User {
   id: String
 }
@@ -218,7 +218,7 @@ await startStandaloneServer(server, {
 });
 ```
 
-```gql
+```graphql
 type Query {
   userPosts: [Post]
     @cypher(
@@ -235,7 +235,7 @@ type Query {
 
 maps a GraphQL field to a Neo4j property on a node or relationship
 
-```gql
+```graphql
 type User {
   id: ID! @id @alias(property: "dbId")
   username: String!
@@ -248,7 +248,7 @@ https://neo4j.com/docs/graphql/current/type-definitions/directives/indexes-and-c
 
 #### `@unique`
 
-```gql
+```graphql
 type Colour {
   hexadecimal: String! @unique
 }
@@ -262,7 +262,7 @@ type Colour {
 
 Use `@fulltext` directive to add a Full text index.
 
-```gql
+```graphql
 type Product
   @fulltext(indexes: [{ indexName: "ProductName", fields: ["name"] }]) {
   name: String!
@@ -278,7 +278,7 @@ CREATE FULLTEXT INDEX ProductName FOR (n:Product) ON EACH [n.name]
 
 This will generate a new query
 
-```gql
+```graphql
 type Query {
   productsFulltextProductName(
     phrase: String!
@@ -324,7 +324,7 @@ input FloatWhere {
 
 **Sample Usage**
 
-```gql
+```graphql
 query {
   productsFulltextProductName(
     phrase: "Hot sauce"
@@ -349,14 +349,14 @@ https://neo4j.com/docs/graphql/current/schema-configuration/type-configuration/
 
 This directive is used to limit the availability of query operations in the library.
 
-```gql
+```graphql
 directive @query(
   read: Boolean! = true
   aggregate: Boolean! = false
 ) on OBJECT | SCHEMA
 ```
 
-```gql
+```graphql
 type Movie @query(read: false, aggregate: true) {
   title: String
   length: Int
@@ -367,7 +367,7 @@ type Movie @query(read: false, aggregate: true) {
 
 > This directive is used to limit the availability of mutation operations in the library.
 
-```gql
+```graphql
 enum MutationFields {
   CREATE
   UPDATE
@@ -389,7 +389,7 @@ type Movie @mutation(operations: [CREATE]) {
 
 >
 
-```gql
+```graphql
 enum SubscriptionFields {
   CREATE
   UPDATE
@@ -450,7 +450,7 @@ https://neo4j.com/docs/graphql/current/queries-aggregations/aggregations/
 - `_GT`
 - `_GTE`
 
-```gql
+```graphql
 query {
   users(where: { age: { _lt: 50 } }) {
     id
@@ -483,7 +483,7 @@ There are much more aggregate functions.
 
 https://neo4j.com/docs/graphql/current/queries-aggregations/sorting/
 
-```gql
+```graphql
 query {
   movies(options: { sort: [{ runtime: ASC }] }) {
     title
@@ -496,7 +496,7 @@ query {
 
 https://neo4j.com/docs/graphql/current/queries-aggregations/pagination/
 
-```gql
+```graphql
 query {
   users(options: { offset: 10, limit: 10 }) {
     name
@@ -510,7 +510,7 @@ https://neo4j.com/docs/graphql/current/authentication-and-authorization/
 
 `@authentication` and `@authorization` directive can be used.
 
-```gql
+```graphql
 type User
   @authentication(operations: [DELETE], jwt: { roles_INCLUDES: "admin" }) {
   id: ID!
@@ -521,7 +521,7 @@ type User
 
 ### Authorization without Authentication
 
-```gql
+```graphql
 type User {
   id: ID!
 }
