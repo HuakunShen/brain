@@ -1,5 +1,41 @@
 # Neo4j GraphQL
 
+- [Neo4j GraphQL](#neo4j-graphql)
+  - [Neo4j GraphQL Toolbox](#neo4j-graphql-toolbox)
+  - [GraphQL Directives](#graphql-directives)
+    - [Basics](#basics)
+    - [Autogeneration](#autogeneration)
+      - [`@id`](#id)
+      - [`@timestamp`](#timestamp)
+      - [`@populatedBy`](#populatedby)
+        - [Example (slug)](#example-slug)
+        - [Example (modifiedBy)](#example-modifiedby)
+    - [`@cypher`](#cypher)
+      - [`this`](#this)
+      - [`auth`](#auth)
+      - [`cypherParams`](#cypherparams)
+      - [`alias`](#alias)
+    - [Indexes and Constraints](#indexes-and-constraints)
+      - [`@unique`](#unique)
+      - [`@fulltext`](#fulltext)
+    - [Schema Configuration](#schema-configuration)
+      - [Type Configuration](#type-configuration)
+        - [`@query`](#query)
+        - [`@mutation`](#mutation)
+        - [`@subscription`](#subscription)
+      - [Field Configuration](#field-configuration)
+  - [Query and Aggregation](#query-and-aggregation)
+    - [Aggregation](#aggregation)
+  - [Filtering](#filtering)
+  - [Sorting](#sorting)
+  - [Pagination](#pagination)
+  - [Authentication and Authorization](#authentication-and-authorization)
+    - [Authorization without Authentication](#authorization-without-authentication)
+  - [Excluded Directives OGM](#excluded-directives-ogm)
+  - [Introspector](#introspector)
+  - [Codegen](#codegen)
+
+
 Neo4j supports GraphQL with NodeJS, making it possible to interact with the database like a OGM.
 
 There is the most comprehensive docs I found: https://neo4j.com/docs/graphql/current/
@@ -544,7 +580,7 @@ type Post
 }
 ```
 
-## Excluded Directives OSM
+## Excluded Directives OGM
 
 https://neo4j.com/docs/graphql/current/ogm/directives/#_excluded_directives
 
@@ -579,3 +615,47 @@ const User = ogm.model("User");
 ```
 
 https://neo4j.com/docs/graphql/current/ogm/installation/
+
+## Introspector
+
+https://github.com/neo4j/graphql/tree/dev/packages/introspector
+
+> This is a tool that enables you, with very little effort, to introspect the schema/data model in an existing Neo4j database and build up a set of data structures that can be transformed into any output format.
+
+Basically it will generate the schema from database relationships.
+
+This could be helpful when you have a database and you want to generate the schema from it, but may not help when you need to design the schema first.
+
+
+## Codegen
+
+In order to use codegen (https://the-guild.dev/graphql/codegen) to generate TypeScript types and sdk, you have to run a graphql server and pass the url to schema. 
+
+```ts
+
+import type { CodegenConfig } from '@graphql-codegen/cli';
+
+const config: CodegenConfig = {
+  overwrite: true,
+  schema: "http://localhost:3000/graphql",
+  documents: "operations/**/*.gql",
+  generates: {
+    "src/gql/": {
+      preset: "client",
+      plugins: []
+    },
+    'src/gql/req.ts': {
+      plugins: ['typescript', 'typescript-operations', 'typescript-graphql-request'],
+      config: {
+        rawRequest: true
+      },
+    },
+    "./graphql.schema.json": {
+      plugins: ["introspection"]
+    }
+  }
+};
+
+export default config;
+```
+
