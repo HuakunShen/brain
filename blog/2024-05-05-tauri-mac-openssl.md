@@ -98,5 +98,16 @@ Install OpenSSL with `brew`
 
 ```bash
 brew install openssl
-export export OPENSSL_DIR=$(brew --prefix openssl) 
+export export OPENSSL_DIR=$(brew --prefix openssl)
 ```
+
+This problem was not fully solved. I had to run GitHub Action on `macos-13` runners (intel CPU). The build passes but the resulting app won't run on x86_64 Macs. Keeps saying the openssl lib cannot be loaded. I will update this post when I find a solution.
+
+Read more here https://github.com/tauri-apps/tauri/issues/9684#event-12728702751
+
+The real source of problem was actually `git2`'s dependency (https://crates.io/crates/git2/0.18.3/dependencies) `openssl-sys`. Removing `git2` from my app fixed all problems. Running on `macos-14` runner (M1 pro) worked fine.
+
+[`openssl-sys`](https://crates.io/crates/openssl-sys) is a OpenSSL bindings for rust. So it doesn't include the actual OpenSSL library. You need to install OpenSSL on your system. 
+
+My guess is, during the build process on GitHub Action, the openssl library location is different from the one on my local machine, and the path is burned into the binary. So the binary won't run on other machines. This is just a guess. There must be some solution. I will update this post when I find it.
+
