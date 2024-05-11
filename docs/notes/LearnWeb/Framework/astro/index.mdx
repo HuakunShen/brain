@@ -1,0 +1,62 @@
+---
+title: Astro
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+https://astro.build/
+
+> The web framework for content-driven websites
+>
+> Astro powers the world's fastest websites, client-side web apps, dynamic API endpoints, and everything in-between.
+
+## State
+
+Astro supports multiple UI frameworks simultaneously. Svelte has its own store, Vue has pinia, React has Redux and zustand.
+
+When multiple UI frameworks are used in the same project, the state management of the project becomes a problem.
+
+**Share state between Islands:** https://docs.astro.build/en/recipes/sharing-state-islands/
+
+> When building an Astro website with [islands architecture / partial hydration](https://docs.astro.build/en/concepts/islands/), you may have run into this problem: I want to share state between my components.
+
+[Nano Stores](https://github.com/nanostores/nanostores) is Astro's recommended client-side storage solution.
+
+Nano stores supports many frameworks and can be imported into the components of different frameworks.
+
+<Tabs>
+  <TabItem value="react" label="React" default>
+    ```jsx
+    import { useStore } from '@nanostores/react';
+    import { isCartOpen } from '../cartStore';
+
+    export default function CartButton() {
+      // read the store value with the `useStore` hook
+      const $isCartOpen = useStore(isCartOpen);
+      // write to the imported store using `.set`
+      return (
+        <button onClick={() => isCartOpen.set(!$isCartOpen)}>Cart</button>
+      )
+    }
+    ```
+  </TabItem>
+  <TabItem value="svelte" label="svelte">
+    ```jsx
+    <script>
+    import { isCartOpen } from '../cartStore';
+    </script>
+
+    <!--use "$" to read the store value-->
+    <button on:click={() => isCartOpen.set(!$isCartOpen)}>Cart</button>
+    ```
+  </TabItem>
+</Tabs>
+
+## Themes
+
+On https://astro.build/themes/, there are many themes to choose from.
+
+- A beautiful documentation theme: https://starlight.astro.build/
+- A diagram plugin: https://astro-d2.vercel.app/
