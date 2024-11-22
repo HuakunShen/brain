@@ -11,8 +11,8 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "Jarvis",
-    image: "/img/jarvis-logo.png",
+    title: "Kunkun",
+    image: "/img/kunkun-logo-150x150.png",
     description: (
       <>
         Jarvis is a open-source and cross-platform extensible app launcher.
@@ -20,23 +20,23 @@ const FeatureList: FeatureItem[] = [
         allowing users to create extension with web tech. Any web app can be integrated into Jarvis as an extension with 
         a few lines of code.
         <br />
-        <a href="https://jarvis.huakun.tech">Jarvis</a>
+        <a href="https://kunkun.sh">Jarvis</a>
       </>
     ),
   },
-  {
-    title: "CrossCopy",
-    image: "/img/CrossCopy-Logo.svg",
-    description: (
-      <>
-        CrossCopy is a Cross-Platform Realtime Clipboard Syncing Service that
-        allows user to seamlessly sync clipboard data across all devices, no
-        matter which device/platform is used
-        <br />
-        <a href="https://crosscopy.io">CrossCopy</a>
-      </>
-    ),
-  },
+  // {
+  //   title: "CrossCopy",
+  //   image: "/img/CrossCopy-Logo.svg",
+  //   description: (
+  //     <>
+  //       CrossCopy is a Cross-Platform Realtime Clipboard Syncing Service that
+  //       allows user to seamlessly sync clipboard data across all devices, no
+  //       matter which device/platform is used
+  //       <br />
+  //       <a href="https://crosscopy.io">CrossCopy</a>
+  //     </>
+  //   ),
+  // },
   {
     title: "YouTube",
     image: "/img/youtube-logo.webp",
